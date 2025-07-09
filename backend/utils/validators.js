@@ -19,10 +19,10 @@ const validateRegisterInput = async (data) => {
     if (existingUser) {
       errors.email = 'Email already in use';
     }
-  }
+  } 
 
   if (!data.country) {
-    errors.country = 'Country is required';
+    errors.country = 'Country is required ';
   }
 
   if (!data.password || data.password.length < 6) {

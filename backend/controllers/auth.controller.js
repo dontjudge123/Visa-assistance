@@ -12,7 +12,7 @@ const { validateRegisterInput } = require('../utils/validators');
 // Add this to your existing auth controller
 const registerAdmin = async (req, res, next) => {
   try {
-    const { firstName, surname, email, password, confirmPassword, secretKey } = req.body;
+    const { firstName, surname, email, country, password, confirmPassword, secretKey } = req.body;
 
     // Verify admin secret key
     if (secretKey !== process.env.ADMIN_SECRET_KEY) {
@@ -27,6 +27,7 @@ const registerAdmin = async (req, res, next) => {
       firstName,
       surname,
       email,
+      country,
       password,
       confirmPassword
     });
@@ -40,6 +41,7 @@ const registerAdmin = async (req, res, next) => {
       firstName,
       surname,
       email,
+      country,
       password,
       role: 'admin',
       isVerified: true // Auto-verify admin users
