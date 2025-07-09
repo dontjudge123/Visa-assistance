@@ -1,0 +1,11 @@
+{
+  "name": "Visa-assistance",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"cd frontend && npm run dev\" \"cd backend && node server.js\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
