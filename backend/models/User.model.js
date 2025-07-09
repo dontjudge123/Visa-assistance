@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema(
     otp: { type: String },
     otpExpiry: { type: Date },
     refreshToken: { type: String },
+    permissions: { type: [String], default: [] },
+    active: { type: Boolean, default: true },
   },
   { timestamps: true }
 );

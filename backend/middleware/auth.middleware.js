@@ -10,30 +10,50 @@ const authenticate = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ 
         success: false,
+        code: 'MISSING_TOKEN',
         message: 'Access token required' 
       });
     }
 
+    // Add verbose token verification
+    console.log('Verifying token:', token);
     const decoded = verifyAccessToken(token);
+    console.log('Decoded token:', decoded);
+
+    // Enhanced user lookup
+    const user = await User.findById(decoded.id).lean();
     
-    // Optional: Verify user still exists in database
-    const user = await User.findById(decoded.id);
     if (!user) {
+      console.error(`User not found for ID: ${decoded.id}`);
+      console.log('Sample user from DB:', await User.findOne().lean());
       return res.status(401).json({ 
         success: false,
-        message: 'User not found' 
+        code: 'USER_NOT_FOUND',
+        message: 'User not found',
+        decodedUserId: decoded.id // Include the ID we looked for
+      });
+    }
+
+    // Verify account status
+    if (user.active === false) {
+      return res.status(403).json({
+        success: false,
+        code: 'ACCOUNT_DISABLED',
+        message: 'Account is disabled'
       });
     }
 
     req.user = {
       ...decoded,
-      details: user // Attach full user details if needed
+      details: user
     };
     
     next();
   } catch (error) {
+    console.error('Authentication error:', error);
     return res.status(403).json({ 
       success: false,
+      code: 'AUTH_ERROR',
       message: 'Invalid or expired token',
       error: error.message 
     });

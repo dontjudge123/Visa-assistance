@@ -20,9 +20,9 @@ import RegisteringBusiness from "./pages/Features/RegisteringBusiness";
 
 
 import AdminLayout from './components/admin/AdminLayout';
-import AdminDashboard from './components/admin/AdminDashboard';
-import AdminUsers from './components/admin/AdminUsers';
-import AdminSettings from './components/admin/AdminSettings';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminUsers from './pages/admin/AdminUsers';
+import AdminSettings from './pages/admin/AdminSettings';
 import AdminRoute from './components/common/AdminRoute';
 
 function App() {
@@ -52,13 +52,14 @@ function App() {
 
 
             {/* Admin routes */}
-          <Route path="/admin" element={<AdminRoute />}>
+           <Route path="/admin" element={<AdminRoute />}>
             <Route element={<AdminLayout />}>
-              <Route index element={<AdminDashboard />} />
+              <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="users" element={<AdminUsers />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
           </Route>
+       
         </Routes>
         <ToastContainer position="top-right" autoClose={5000} />
       </AuthProvider>

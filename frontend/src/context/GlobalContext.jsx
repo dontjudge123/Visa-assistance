@@ -20,33 +20,39 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const initializeAuth = async () => {
-      const token = localStorage.getItem('accessToken');
-      if (token) {
-        try {
-          const userData = await getCurrentUser(token);
-          setUser(userData.user);
-        } catch (err) {
-          const refreshToken = localStorage.getItem('refreshToken');
-          if (refreshToken) {
-            try {
-              const { accessToken } = await refreshAccessToken(refreshToken);
-              localStorage.setItem('accessToken', accessToken);
-              const userData = await getCurrentUser(accessToken);
-              setUser(userData.user);
-            } catch (refreshError) {
-              logout();
-            }
-          } else {
-            logout();
-          }
-        }
-      }
+  const initializeAuth = async () => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
       setLoading(false);
-    };
+      return;
+    }
+ 
+    try {
+      // First try with access token
+      const userData = await getCurrentUser(token);
+      setUser(userData.user);
+    } catch (err) {
+      // If access token fails, try refresh token
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        logout();
+        return;
+      }
 
-    initializeAuth();
-  }, []);
+      try {
+        const { accessToken, user } = await refreshAccessToken(refreshToken);
+        localStorage.setItem('accessToken', accessToken);
+        setUser(user);
+      } catch (refreshError) {
+        logout();
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  initializeAuth();
+}, []);
 
   const register = async (formData) => {
     try {
@@ -59,19 +65,25 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (formData) => {
-    try {
-      const { accessToken, refreshToken, user } = await loginUser(formData);
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-      setUser(user);
-      toast.success('Login successful!');
+const login = async (formData) => {
+  try {
+    const { accessToken, refreshToken, user } = await loginUser(formData);
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+    setUser(user);
+    toast.success('Login successful!');
+    
+    // Redirect based on role
+    if (user.role === 'admin') {
+      navigate('/admin/dashboard');
+    } else {
       navigate('/dashboard');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
-      toast.error(err.response?.data?.message || 'Login failed');
     }
-  };
+  } catch (err) {
+    setError(err.response?.data?.message || 'Login failed');
+    toast.error(err.response?.data?.message || 'Login failed');
+  }
+};
 
   const verifyUserEmail = async (email, otp) => {
     try {

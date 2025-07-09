@@ -9,7 +9,7 @@ const AdminSidebar = () => {
           <NavLink to="/admin" end>Dashboard</NavLink>
         </li>
         <li>
-          <NavLink to="/admin/users">Users</NavLink>
+          {/* <NavLink to="/admin/users">Users</NavLink> */}
         </li>
         <li>
           <NavLink to="/admin/settings">Settings</NavLink>
