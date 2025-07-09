@@ -1,0 +1,10 @@
+{
+  "name": "Visa-assistance Dev",
+  "postCreateCommand": "cd frontend && npm install && cd ../backend && npm install",
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  }
+}
