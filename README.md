@@ -1,5 +1,4 @@
-How to Run
-To start the project in GitHub Codespaces or your local environment:
+How to start the project in GitHub Codespaces:
 - Run:
 *npm start*
 - ⚠️ Wait a few moments for the environment to finish setting up. If you see an error or the command doesn't work, open a new terminal and try running npm start again.
