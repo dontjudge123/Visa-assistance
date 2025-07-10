@@ -44,7 +44,12 @@ const Home = () => {
           </div>
           <div className="md:w-1/2 flex justify-center">
             <div className="bg-blue-100 rounded-xl p-8 w-full max-w-md h-64 flex items-center justify-center">
-              <span className="text-blue-600 text-lg">App Preview Image</span>
+              <img
+      src="/images/logo.png"
+      alt="App Preview"
+      className="max-h-full max-w-full object-contain"
+    />
+
             </div>
           </div>
         </section>
