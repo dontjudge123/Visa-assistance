@@ -1,6 +1,6 @@
 {
   "name": "Visa-assistance Dev",
-  "postCreateCommand": "cd frontend && npm install && cd ../backend && npm install",
+  "postCreateCommand": "npm install && cd frontend && npm install && cd ../backend && npm install",
   "customizations": {
     "vscode": {
       "settings": {},
