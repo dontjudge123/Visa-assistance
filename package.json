@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "npx concurrently \"cd frontend && npm run dev\" \"cd backend && node server.js\""
+    "start": "concurrently \"cd frontend && npm run dev\" \"cd backend && node server.js\""
   },
   "devDependencies": {
     "concurrently": "^8.0.0"
