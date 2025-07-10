@@ -9,9 +9,11 @@
 //   }
 // }
 
+
+
 {
   "name": "Visa-assistance Dev",
-  "postCreateCommand": "npm install -g concurrently && npm install && cd frontend && npm install && cd ../backend && npm install",
+  "postCreateCommand": "npm install -g concurrently && npm install && cd frontend && npm install && cd ../backend && npm install && cd .. && npm start",
   "customizations": {
     "vscode": {
       "settings": {},
@@ -19,17 +21,4 @@
     }
   }
 }
-
-
-
-// {
-//   "name": "Visa-assistance Dev",
-//   "postCreateCommand": "npm install -g concurrently && npm install && cd frontend && npm install && cd ../backend && npm install && cd .. && npm start",
-//   "customizations": {
-//     "vscode": {
-//       "settings": {},
-//       "extensions": ["dbaeumer.vscode-eslint"]
-//     }
-//   }
-// }
 
