@@ -1,5 +1,6 @@
 #!/bin/bash
-# Start servers with logging
+LOG_FILE="/workspaces/server-logs.txt"
+
 echo "Starting servers..."
 npx concurrently \
   -k \
@@ -7,8 +8,9 @@ npx concurrently \
   -c "bgBlue.bold,bgGreen.bold" \
   "cd frontend && npm start" \
   "cd backend && node server.js" \
-  > /workspace/server-logs.txt 2>&1 &
+  > "$LOG_FILE" 2>&1 &
 
-# Wait for servers to start
-sleep 5
-echo "Servers started! Check server-logs.txt for details"
+echo "✅ Servers started!"
+echo "View logs: tail -f $LOG_FILE"
+echo "Frontend: https://${CODESPACE_NAME}-3000.preview.app.github.dev"
+echo "Backend: https://${CODESPACE_NAME}-5000.preview.app.github.dev"

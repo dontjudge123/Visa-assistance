@@ -1,13 +1,12 @@
 {
   "name": "Visa-assistance Dev",
-  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postCreateCommand": "bash -c 'chmod +x .devcontainer/*.sh && ./.devcontainer/setup.sh'",
   "postAttachCommand": "bash .devcontainer/start-servers.sh",
   "forwardPorts": [3000, 5000],
   "portsAttributes": {
     "3000": {
       "label": "Frontend",
-      "onAutoForward": "openBrowser",
-      "protocol": "https"
+      "onAutoForward": "openBrowser"
     },
     "5000": {
       "label": "Backend",
@@ -16,7 +15,10 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "mongodb.mongodb-vscode"
+      ]
     }
   }
 }
