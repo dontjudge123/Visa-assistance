@@ -1,12 +1,17 @@
 {
   "name": "Visa-assistance Dev",
-  "postCreateCommand": "npm install && (cd frontend && npm install) && (cd backend && npm install)",
-  "postStartCommand": "npx concurrently \"cd frontend && npm start\" \"cd backend && node server.js\"",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postAttachCommand": "bash .devcontainer/start-servers.sh",
   "forwardPorts": [3000, 5000],
   "portsAttributes": {
     "3000": {
       "label": "Frontend",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "openBrowser",
+      "protocol": "https"
+    },
+    "5000": {
+      "label": "Backend",
+      "onAutoForward": "notify"
     }
   },
   "customizations": {
