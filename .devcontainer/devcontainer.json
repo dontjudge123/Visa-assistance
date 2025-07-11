@@ -1,6 +1,7 @@
 {
   "name": "Visa-assistance Dev",
-  "postCreateCommand": "npm install && chmod +x node_modules/.bin/concurrently && cd frontend && npm install && chmod +x node_modules/.bin/react-scripts && cd ../backend && npm install && npx concurrently \"cd frontend && npm start\" \"cd backend && node server.js\"",
+  "postCreateCommand": "npm install && (cd frontend && npm install) && (cd backend && npm install)",
+  "postStartCommand": "npx concurrently \"cd frontend && npm start\" \"cd backend && node server.js\"",
   "customizations": {
     "vscode": {
       "settings": {},
