@@ -1,24 +1,11 @@
 
-// {
-//   "name": "Visa-assistance Dev",
-//   "postCreateCommand": "npm install -g concurrently && npm install && cd frontend && npm install && cd ../backend && npm install && cd .. && npm start",
-//   "customizations": {
-//     "vscode": {
-//       "settings": {},
-//       "extensions": ["dbaeumer.vscode-eslint"]
-//     }
-//   }
-// }
-
-
-{
-  "name": "Visa-assistance Dev",
-  "postCreateCommand": "npm install -g concurrently && npm install && cd frontend && npm install && cd ../backend && npm install",
-  "customizations": {
-    "vscode": {
+ {
+   "name": "Visa-assistance Dev",
+   "postCreateCommand": "npm install -g concurrently && npm install && cd frontend && npm install && cd ../backend && npm install && cd .. && npm start",
+   "customizations": {
+     "vscode": {
       "settings": {},
-      "extensions": ["dbaeumer.vscode-eslint"]
-    }
-  }
-}
-
+       "extensions": ["dbaeumer.vscode-eslint"]
+     }
+   }
+ }
